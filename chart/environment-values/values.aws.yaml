@@ -1,18 +1,18 @@
 owgw:
   configProperties:
     storage.type: postgresql
-    storage.type.postgresql.host: database-apc.cby6m2cgaxwk.us-east-2.rds.amazonaws.com
+    storage.type.postgresql.host: database.us-east-2.rds.amazonaws.com
     storage.type.postgresql.port: 5432
     storage.type.postgresql.username: owgw
-    storage.type.postgresql.password: owgw_password
+    storage.type.postgresql.password: PASSWORD
     storage.type.postgresql.database: owgw
     openwifi.restapi.ext.requirecert: false
     openwifi.restapi.int.requirecert: true
-    openwifi.fileuploader.host.0.name: gwproxy.swastiknayak.info
-    openwifi.system.uri.public: https://gwproxy.swastiknayak.info:16002
+    openwifi.fileuploader.host.0.name: gwproxy.openlan.wifi
+    openwifi.system.uri.public: https://gwproxy.openlan.wifi:16002
     openwifi.system.uri.private: https://owgw-owgw:17002
-    openwifi.system.uri.ui: https://webui.swastiknayak.info
-    rtty.server: gwproxy.swastiknayak.info
+    openwifi.system.uri.ui: https://webui.openlan.wifi
+    rtty.server: gwproxy.openlan.wifi
 
 owgwui:
   services:
@@ -23,66 +23,66 @@ owgwui:
       enabled: true
       className: alb
       hosts:
-        - webui.swastiknayak.info
+        - webui.openlan.wifi
       annotations:
         alb.ingress.kubernetes.io/scheme: internet-facing
         alb.ingress.kubernetes.io/group.name: wlan-cicd
         alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-2:270023013472:certificate/dce71346-3ad9-4839-bc84-cfebdeb2ebfa
         alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS": 443}]'
         alb.ingress.kubernetes.io/actions.ssl-redirect: '{"Type": "redirect", "RedirectConfig": { "Protocol": "HTTPS", "Port": "443", "StatusCode": "HTTP_302"}}'
-        external-dns.alpha.kubernetes.io/hostname: webui.swastiknayak.info
+        external-dns.alpha.kubernetes.io/hostname: webui.openlan.wifi
       paths:
       - path: /*
         serviceName: owgwui
         servicePort: http
   public_env_variables:
-    REACT_APP_UCENTRALSEC_URL: https://gwproxy.swastiknayak.info:16001
+    REACT_APP_UCENTRALSEC_URL: https://gwproxy.openlan.wifi:16001
 
 owsec:
   configProperties:
     storage.type: postgresql
-    storage.type.postgresql.host: database-apc.cby6m2cgaxwk.us-east-2.rds.amazonaws.com
+    storage.type.postgresql.host: database.us-east-2.rds.amazonaws.com
     storage.type.postgresql.port: 5432
     storage.type.postgresql.username: owsec
-    storage.type.postgresql.password: owsec_password
+    storage.type.postgresql.password: PASSWORD
     storage.type.postgresql.database: owsec
     openwifi.restapi.ext.requirecert: false
     openwifi.restapi.int.requirecert: true
     authentication.default.username: tip@ucentral.com
     authentication.default.password: 13268b7daa751240369d125e79c873bd8dd3bef7981bdfd38ea03dbb1fbe7dcf
-    openwifi.system.uri.public: https://gwproxy.swastiknayak.info:16001
+    openwifi.system.uri.public: https://gwproxy.openlan.wifi:16001
     openwifi.system.uri.private: https://owsec-owsec:17001
-    openwifi.system.uri.ui: https://webui.swastiknayak.info
+    openwifi.system.uri.ui: https://webui.openlan.wifi
 
 owfms:
   configProperties:
     storage.type: postgresql
-    storage.type.postgresql.host: database-apc.cby6m2cgaxwk.us-east-2.rds.amazonaws.com
+    storage.type.postgresql.host: database.us-east-2.rds.amazonaws.com
     storage.type.postgresql.port: 5432
     storage.type.postgresql.username: owfms
-    storage.type.postgresql.password: owfms_password
+    storage.type.postgresql.password: PASSWORD
     storage.type.postgresql.database: owfms
     s3.key: TOFILL
     s3.secret: TOFILL
     openwifi.restapi.ext.requirecert: false
     openwifi.restapi.int.requirecert: true
-    openwifi.system.uri.public: https://gwproxy.swastiknayak.info:16004
+    openwifi.system.uri.public: https://gwproxy.openlan.wifi:16004
     openwifi.system.uri.private: https://owfms-owfms:17004
-    openwifi.system.uri.ui: https://webui.swastiknayak.info
+    openwifi.system.uri.ui: https://webui.openlan.wifi
 
 owprov:
   configProperties:
     storage.type: postgresql
-    storage.type.postgresql.host: database-apc.cby6m2cgaxwk.us-east-2.rds.amazonaws.com
+    storage.type.postgresql.host: database.us-east-2.rds.amazonaws.com
     storage.type.postgresql.port: 5432
     storage.type.postgresql.username: owprov
-    storage.type.postgresql.password: owprov_password
+    storage.type.postgresql.password: PASSWORD
     storage.type.postgresql.database: owprov
     openwifi.restapi.ext.requirecert: false
     openwifi.restapi.int.requirecert: true
-    openwifi.system.uri.public: https://gwproxy.swastiknayak.info:16005
+    openwifi.system.uri.public: https://gwproxy.openlan.wifi:16005
     openwifi.system.uri.private: https://owprov-owprov:17005
-    openwifi.system.uri.ui: https://webui.swastiknayak.info
+    openwifi.system.uri.ui: https://webui.openlan.wifi
 
 owprovui:
   services:
@@ -93,44 +93,44 @@ owprovui:
       enabled: true
       className: alb
       hosts:
-        - provui.swastiknayak.info
+        - provui.openlan.wifi
       annotations:
         alb.ingress.kubernetes.io/scheme: internet-facing
         alb.ingress.kubernetes.io/group.name: wlan-cicd
         alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-2:270023013472:certificate/dce71346-3ad9-4839-bc84-cfebdeb2ebfa
         alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS": 443}]'
         alb.ingress.kubernetes.io/actions.ssl-redirect: '{"Type": "redirect", "RedirectConfig": { "Protocol": "HTTPS", "Port": "443", "StatusCode": "HTTP_302"}}'
-        external-dns.alpha.kubernetes.io/hostname: provui.swastiknayak.info
+        external-dns.alpha.kubernetes.io/hostname: provui.openlan.wifi
       paths:
       - path: /*
         serviceName: owprovui
         servicePort: http
   public_env_variables:
-    REACT_APP_UCENTRALSEC_URL: https://gwproxy.swastiknayak.info:16001
+    REACT_APP_UCENTRALSEC_URL: https://gwproxy.openlan.wifi:16001
 
 owsub:
   configProperties:
     storage.type: postgresql
-    storage.type.postgresql.host: database-apc.cby6m2cgaxwk.us-east-2.rds.amazonaws.com
+    storage.type.postgresql.host: database.us-east-2.rds.amazonaws.com
     storage.type.postgresql.port: 5432
     storage.type.postgresql.username: owsub
-    storage.type.postgresql.password: owsub_password
+    storage.type.postgresql.password: PASSWORD
     storage.type.postgresql.database: owsub
-    openwifi.system.uri.public: https://gwproxy.swastiknayak.info:16006
+    openwifi.system.uri.public: https://gwproxy.openlan.wifi:16006
     openwifi.system.uri.private: https://owsub-owsub:17007
-    openwifi.system.uri.ui: https://webui.swastiknayak.info
+    openwifi.system.uri.ui: https://webui.openlan.wifi
 
 owanalytics:
   configProperties:
     storage.type: postgresql
-    storage.type.postgresql.host: database-apc.cby6m2cgaxwk.us-east-2.rds.amazonaws.com
+    storage.type.postgresql.host: database.us-east-2.rds.amazonaws.com
     storage.type.postgresql.port: 5432
     storage.type.postgresql.username: owanalytics
-    storage.type.postgresql.password: owanalytics_password
+    storage.type.postgresql.password: PASSWORD
     storage.type.postgresql.database: owanalytics
-    openwifi.system.uri.public: https://gwproxy.swastiknayak.info:16009
+    openwifi.system.uri.public: https://gwproxy.openlan.wifi:16009
     openwifi.system.uri.private: https://owanalytics-owanalytics:17009
-    openwifi.system.uri.ui: https://webui.swastiknayak.info
+    openwifi.system.uri.ui: https://webui.openlan.wifi
 
 haproxy:
   service:
@@ -140,4 +140,4 @@ haproxy:
       service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing
       service.beta.kubernetes.io/aws-load-balancer-ssl-ports: "16004,17004,16002,16003,17002,16005,17005,16001,17001,5912,5913,16009,16006"
       service.beta.kubernetes.io/aws-load-balancer-type: nlb-ip
-      external-dns.alpha.kubernetes.io/hostname: "gwproxy.swastiknayak.info"
+      external-dns.alpha.kubernetes.io/hostname: "gwproxy.openlan.wifi"
