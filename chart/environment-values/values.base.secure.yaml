@@ -12,8 +12,8 @@ owgw:
     openwifi.internal.restapi.host.0.cert: $OWGW_ROOT/certs/restapi-certs/tls.crt
     openwifi.internal.restapi.host.0.key: $OWGW_ROOT/certs/restapi-certs/tls.key
     openwifi.restapi.host.0.rootca: $OWGW_ROOT/certs/restapi-certs/ca.crt
-    openwifi.restapi.host.0.cert: $OWGW_ROOT/certs/restapi-certs/tls.crt
-    openwifi.restapi.host.0.key: $OWGW_ROOT/certs/restapi-certs/tls.key
+    openwifi.restapi.host.0.cert: $OWGW_ROOT/certs/restapi-certs/public.crt
+    openwifi.restapi.host.0.key: $OWGW_ROOT/certs/restapi-certs/public.key
 
   volumes:
     owgw:
@@ -39,12 +39,15 @@ owgw:
         volumeDefinition: |
           persistentVolumeClaim:
             claimName: {{ template "owgw.fullname" . }}-pvc
-
       - name: restapi-certs
         mountPath: /owgw-data/certs/restapi-certs
         volumeDefinition: |
-          secret:
-            secretName: {{ include "owgw.fullname" . }}-owgw-restapi-tls
+          projected:
+            sources:
+              - secret:
+                  name: {{ include "owgw.fullname" . }}-owgw-restapi-tls
+              - secret:
+                  name: public-wildcard-tls
       - name: restapi-ca
         mountPath: /usr/local/share/ca-certificates/restapi-ca-selfsigned.crt
         subPath: ca.crt
@@ -66,8 +69,8 @@ owsec:
     openwifi.internal.restapi.host.0.cert: $OWSEC_ROOT/certs/restapi-certs/tls.crt
     openwifi.internal.restapi.host.0.key: $OWSEC_ROOT/certs/restapi-certs/tls.key
     openwifi.restapi.host.0.rootca: $OWSEC_ROOT/certs/restapi-certs/ca.crt
-    openwifi.restapi.host.0.cert: $OWSEC_ROOT/certs/restapi-certs/tls.crt
-    openwifi.restapi.host.0.key: $OWSEC_ROOT/certs/restapi-certs/tls.key
+    openwifi.restapi.host.0.cert: $OWSEC_ROOT/certs/restapi-certs/public.crt
+    openwifi.restapi.host.0.key: $OWSEC_ROOT/certs/restapi-certs/public.key
 
   volumes:
     owsec:
@@ -88,12 +91,15 @@ owsec:
         volumeDefinition: |
           persistentVolumeClaim:
             claimName: {{ template "owsec.fullname" . }}-pvc
-
       - name: restapi-certs
         mountPath: /owsec-data/certs/restapi-certs
         volumeDefinition: |
-          secret:
-            secretName: {{ include "owsec.fullname" . }}-owsec-restapi-tls
+          projected:
+            sources:
+              - secret:
+                  name: {{ include "owsec.fullname" . }}-owsec-restapi-tls
+              - secret:
+                  name: public-wildcard-tls
       - name: restapi-ca
         mountPath: /usr/local/share/ca-certificates/restapi-ca-selfsigned.crt
         subPath: ca.crt
@@ -115,8 +121,8 @@ owfms:
     openwifi.internal.restapi.host.0.cert: $OWFMS_ROOT/certs/restapi-certs/tls.crt
     openwifi.internal.restapi.host.0.key: $OWFMS_ROOT/certs/restapi-certs/tls.key
     openwifi.restapi.host.0.rootca: $OWFMS_ROOT/certs/restapi-certs/ca.crt
-    openwifi.restapi.host.0.cert: $OWFMS_ROOT/certs/restapi-certs/tls.crt
-    openwifi.restapi.host.0.key: $OWFMS_ROOT/certs/restapi-certs/tls.key
+    openwifi.restapi.host.0.cert: $OWFMS_ROOT/certs/restapi-certs/public.crt
+    openwifi.restapi.host.0.key: $OWFMS_ROOT/certs/restapi-certs/public.key
 
   volumes:
     owfms:
@@ -137,12 +143,15 @@ owfms:
         volumeDefinition: |
           persistentVolumeClaim:
             claimName: {{ template "owfms.fullname" . }}-pvc
-
       - name: restapi-certs
         mountPath: /owfms-data/certs/restapi-certs
         volumeDefinition: |
-          secret:
-            secretName: {{ include "owfms.fullname" . }}-owfms-restapi-tls
+          projected:
+            sources:
+              - secret:
+                  name: {{ include "owfms.fullname" . }}-owfms-restapi-tls
+              - secret:
+                  name: public-wildcard-tls
       - name: restapi-ca
         mountPath: /usr/local/share/ca-certificates/restapi-ca-selfsigned.crt
         subPath: ca.crt
@@ -164,8 +173,8 @@ owprov:
     openwifi.internal.restapi.host.0.cert: $OWPROV_ROOT/certs/restapi-certs/tls.crt
     openwifi.internal.restapi.host.0.key: $OWPROV_ROOT/certs/restapi-certs/tls.key
     openwifi.restapi.host.0.rootca: $OWPROV_ROOT/certs/restapi-certs/ca.crt
-    openwifi.restapi.host.0.cert: $OWPROV_ROOT/certs/restapi-certs/tls.crt
-    openwifi.restapi.host.0.key: $OWPROV_ROOT/certs/restapi-certs/tls.key
+    openwifi.restapi.host.0.cert: $OWPROV_ROOT/certs/restapi-certs/public.crt
+    openwifi.restapi.host.0.key: $OWPROV_ROOT/certs/restapi-certs/public.key
 
   volumes:
     owprov:
@@ -190,8 +199,12 @@ owprov:
       - name: restapi-certs
         mountPath: /owprov-data/certs/restapi-certs
         volumeDefinition: |
-          secret:
-            secretName: {{ include "owprov.fullname" . }}-owprov-restapi-tls
+          projected:
+            sources:
+              - secret:
+                  name: {{ include "owprov.fullname" . }}-owprov-restapi-tls
+              - secret:
+                  name: public-wildcard-tls
       - name: restapi-ca
         mountPath: /usr/local/share/ca-certificates/restapi-ca-selfsigned.crt
         subPath: ca.crt
@@ -213,8 +226,8 @@ owanalytics:
     openwifi.internal.restapi.host.0.cert: $OWANALYTICS_ROOT/certs/restapi-certs/tls.crt
     openwifi.internal.restapi.host.0.key: $OWANALYTICS_ROOT/certs/restapi-certs/tls.key
     openwifi.restapi.host.0.rootca: $OWANALYTICS_ROOT/certs/restapi-certs/ca.crt
-    openwifi.restapi.host.0.cert: $OWANALYTICS_ROOT/certs/restapi-certs/tls.crt
-    openwifi.restapi.host.0.key: $OWANALYTICS_ROOT/certs/restapi-certs/tls.key
+    openwifi.restapi.host.0.cert: $OWANALYTICS_ROOT/certs/restapi-certs/public.crt
+    openwifi.restapi.host.0.key: $OWANALYTICS_ROOT/certs/restapi-certs/public.key
 
   volumes:
     owanalytics:
@@ -239,8 +252,12 @@ owanalytics:
       - name: restapi-certs
         mountPath: /owanalytics-data/certs/restapi-certs
         volumeDefinition: |
-          secret:
-            secretName: {{ include "owanalytics.fullname" . }}-owanalytics-restapi-tls
+          projected:
+            sources:
+              - secret:
+                  name: {{ include "owanalytics.fullname" . }}-owanalytics-restapi-tls
+              - secret:
+                  name: public-wildcard-tls
       - name: restapi-ca
         mountPath: /usr/local/share/ca-certificates/restapi-ca-selfsigned.crt
         subPath: ca.crt
@@ -263,8 +280,8 @@ owsub:
     openwifi.internal.restapi.host.0.cert: $OWSUB_ROOT/certs/restapi-certs/tls.crt
     openwifi.internal.restapi.host.0.key: $OWSUB_ROOT/certs/restapi-certs/tls.key
     openwifi.restapi.host.0.rootca: $OWSUB_ROOT/certs/restapi-certs/ca.crt
-    openwifi.restapi.host.0.cert: $OWSUB_ROOT/certs/restapi-certs/tls.crt
-    openwifi.restapi.host.0.key: $OWSUB_ROOT/certs/restapi-certs/tls.key
+    openwifi.restapi.host.0.cert: $OWSUB_ROOT/certs/restapi-certs/public.crt
+    openwifi.restapi.host.0.key: $OWSUB_ROOT/certs/restapi-certs/public.key
 
   volumes:
     owsub:
@@ -289,8 +306,12 @@ owsub:
       - name: restapi-certs
         mountPath: /owsub-data/certs/restapi-certs
         volumeDefinition: |
-          secret:
-            secretName: {{ include "owsub.fullname" . }}-owsub-restapi-tls
+          projected:
+            sources:
+              - secret:
+                  name: {{ include "owsub.fullname" . }}-owsub-restapi-tls
+              - secret:
+                  name: public-wildcard-tls
       - name: restapi-ca
         mountPath: /usr/local/share/ca-certificates/restapi-ca-selfsigned.crt
         subPath: ca.crt

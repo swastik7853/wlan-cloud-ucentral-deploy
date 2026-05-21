@@ -1,6 +1,6 @@
 *.swp
 tmp/
-chart/charts/*
+#chart/charts/*
 chart/Chart.lock
 chart/environment-values/wlan-cloud-ucentral-deploy/
 docker-compose/certs/websocket*pem
