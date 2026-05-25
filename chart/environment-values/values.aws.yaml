@@ -4,7 +4,7 @@ owgw:
     storage.type.postgresql.host: database.us-east-2.rds.amazonaws.com
     storage.type.postgresql.port: 5432
     storage.type.postgresql.username: owgw
-    storage.type.postgresql.password: PASSWORD
+    storage.type.postgresql.password: PASSWORD@owgw!
     storage.type.postgresql.database: owgw
     openwifi.restapi.ext.requirecert: false
     openwifi.restapi.int.requirecert: true
@@ -44,7 +44,7 @@ owsec:
     storage.type.postgresql.host: database.us-east-2.rds.amazonaws.com
     storage.type.postgresql.port: 5432
     storage.type.postgresql.username: owsec
-    storage.type.postgresql.password: PASSWORD
+    storage.type.postgresql.password: PASSWORD@owsec!
     storage.type.postgresql.database: owsec
     openwifi.restapi.ext.requirecert: false
     openwifi.restapi.int.requirecert: true
@@ -60,7 +60,7 @@ owfms:
     storage.type.postgresql.host: database.us-east-2.rds.amazonaws.com
     storage.type.postgresql.port: 5432
     storage.type.postgresql.username: owfms
-    storage.type.postgresql.password: PASSWORD
+    storage.type.postgresql.password: PASSWORD@owfms!
     storage.type.postgresql.database: owfms
     s3.key: TOFILL
     s3.secret: TOFILL
@@ -76,7 +76,7 @@ owprov:
     storage.type.postgresql.host: database.us-east-2.rds.amazonaws.com
     storage.type.postgresql.port: 5432
     storage.type.postgresql.username: owprov
-    storage.type.postgresql.password: PASSWORD
+    storage.type.postgresql.password: PASSWORD@owprov!
     storage.type.postgresql.database: owprov
     openwifi.restapi.ext.requirecert: false
     openwifi.restapi.int.requirecert: true
@@ -114,7 +114,7 @@ owsub:
     storage.type.postgresql.host: database.us-east-2.rds.amazonaws.com
     storage.type.postgresql.port: 5432
     storage.type.postgresql.username: owsub
-    storage.type.postgresql.password: PASSWORD
+    storage.type.postgresql.password: PASSWORD@owsub!
     storage.type.postgresql.database: owsub
     openwifi.system.uri.public: https://gwproxy.openlan.wifi:16006
     openwifi.system.uri.private: https://owsub-owsub:17007
@@ -126,7 +126,7 @@ owanalytics:
     storage.type.postgresql.host: database.us-east-2.rds.amazonaws.com
     storage.type.postgresql.port: 5432
     storage.type.postgresql.username: owanalytics
-    storage.type.postgresql.password: PASSWORD
+    storage.type.postgresql.password: PASSWORD@owanalytics!
     storage.type.postgresql.database: owanalytics
     openwifi.system.uri.public: https://gwproxy.openlan.wifi:16009
     openwifi.system.uri.private: https://owanalytics-owanalytics:17009
