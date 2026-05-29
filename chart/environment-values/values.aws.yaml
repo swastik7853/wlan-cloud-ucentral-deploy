@@ -28,7 +28,7 @@ owgwui:
         alb.ingress.kubernetes.io/scheme: internet-facing
         alb.ingress.kubernetes.io/target-type: ip
         alb.ingress.kubernetes.io/group.name: wlan-owgwui
-        alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-2:270023013472:certificate/dce71346-3ad9-4839-bc84-cfebdeb2ebfa
+        alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-2:270023013472:certificate/5eb9622a-852c-4112-a530-4b41831c9678
         alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS": 443}]'
         alb.ingress.kubernetes.io/actions.ssl-redirect: '{"Type": "redirect", "RedirectConfig": { "Protocol": "HTTPS", "Port": "443", "StatusCode": "HTTP_302"}}'
         external-dns.alpha.kubernetes.io/hostname: webui.openlan.wifi
@@ -99,7 +99,7 @@ owprovui:
         alb.ingress.kubernetes.io/scheme: internet-facing
         alb.ingress.kubernetes.io/target-type: ip
         alb.ingress.kubernetes.io/group.name: wlan-owprovui
-        alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-2:270023013472:certificate/dce71346-3ad9-4839-bc84-cfebdeb2ebfa
+        alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-2:270023013472:certificate/5eb9622a-852c-4112-a530-4b41831c9678
         alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS": 443}]'
         alb.ingress.kubernetes.io/actions.ssl-redirect: '{"Type": "redirect", "RedirectConfig": { "Protocol": "HTTPS", "Port": "443", "StatusCode": "HTTP_302"}}'
         external-dns.alpha.kubernetes.io/hostname: provui.openlan.wifi
